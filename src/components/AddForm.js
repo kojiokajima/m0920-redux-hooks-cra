@@ -2,8 +2,8 @@ import React, { useRef } from 'react'
 import { connect } from 'react-redux'
 import {useSelector, useDispatch} from 'react-redux'
 
-const AddForm = ({ newToDo }) => {
-// const AddForm = () => {
+// const AddForm = ({ newToDo }) => {
+const AddForm = () => {
   const refContainer = useRef(null)
   const dispatch = useDispatch()
 

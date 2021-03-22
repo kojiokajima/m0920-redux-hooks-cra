@@ -8,7 +8,7 @@ const AddForm = ({ newToDo }) => {
   const dispatch = useDispatch()
 
   const addToDo = (content) => {
-    dispatch({ type: 'NEW_TO_DO', payload: {...newToDo, content} })
+    dispatch({ type: 'NEW_TO_DO', payload: content })
     // console.log(payload)
   }
 
@@ -17,7 +17,7 @@ const AddForm = ({ newToDo }) => {
 
     // newToDo({ content: refContainer.current.value })
 
-    addToDo(refContainer.current.value)
+    addToDo({ content: refContainer.current.value })
     // dispatch({ type: 'NEW_TO_DO', payload: refContainer.current.value })
 
 

@@ -1,9 +1,16 @@
 import React from 'react'
 import ToDoList from './components/ToDoList'
 import './styles.css'
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import {connect} from 'react-redux'
 
-function App({ toDoList }) {
+function App() {
+// function App({ toDoList }) {
+
+  const toDoList = useSelector((state) => state.toDoList)
+  console.log(toDoList)
+  // console.log(state.toDoList)
+
   return (
     <div className='container'>
       <h1 className='center blue-text'>ToDo's ({toDoList.length})</h1>
@@ -19,4 +26,5 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(App)
+export default App
+// export default connect(mapStateToProps)(App)

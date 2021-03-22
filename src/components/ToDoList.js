@@ -1,16 +1,33 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import ToDos from './ToDos'
 import AddForm from './AddForm'
 import FilterToDos from './FilterToDos'
 
 const ToDoList = (props) => {
-  const { toDoList, removeToDo, markToDo } = props
+  // const { toDoList, removeToDo, markToDo } = props
+
+  //  stateの中にはstoreのstateが入る
+  const toDoList = useSelector((state) => state.toDoList) // mapStateToPropsみたいなもん
+  const dispatch = useDispatch()
+
 
   const [filterVal, setFilterVal] = useState('SHOW_ALL')
 
-  const deleteToDo = (id) => removeToDo(id)
-  const doneToDo = (id) => markToDo(id)
+  // const deleteToDo = (id) => {
+  //   dispatch({ type: 'DELETE_TO_DO', payload: id })
+  // }
+  
+  // const doneToDo = (id) => {
+  //   dispatch({ type: 'DONE_TO_DO', payload: id })
+  // }
+
+  const deleteToDo = (id) => {
+    dispatch({ type: 'DELETE_TO_DO', payload: id })
+  }
+  const doneToDo = (id) => {
+    dispatch({ type: 'DONE_TO_DO', payload: id })
+  }
 
   const getVisibleToDos = (toDoList, filterVal) => {
     switch (filterVal) {
@@ -59,21 +76,21 @@ const ToDoList = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    toDoList: state.toDoList,
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     toDoList: state.toDoList,
+//   }
+// }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    removeToDo: (id) => {
-      dispatch({ type: 'DELETE_TO_DO', payload: id })
-    },
-    markToDo: (id) => {
-      dispatch({ type: 'DONE_TO_DO', payload: id })
-    },
-  }
-}
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     removeToDo: (id) => {
+//       dispatch({ type: 'DELETE_TO_DO', payload: id })
+//     },
+//     markToDo: (id) => {
+//       dispatch({ type: 'DONE_TO_DO', payload: id })
+//     },
+//   }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ToDoList)
+export default ToDoList
